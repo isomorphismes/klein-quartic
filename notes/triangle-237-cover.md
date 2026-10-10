@@ -36,21 +36,33 @@ incidence identity and have cycle lengths 7,2,3 respectively.
 The quotient area at curvature −1 is 336 × (π/42) = 8π. This agrees with
 Gauss–Bonnet, 4π(g−1) at g=3.
 
-## What can actually be reused
+## Actual hyperbolic polygon and 44 pairing maps
 
-This provides **verified combinatorial gluing permutations** and a numeric
-universal-cover patch, but not yet a specific hyperbolic 14-gon with an
-explicit boundary-pairing table. It does not equate points on Tim Hutton's
-existing 3D embedding, nor turn the old Python 2/VTK model into a modern
-renderer. The mapping of the 24 quotient faces to Hutton's 24 embedded
-heptagons is a separate correspondence problem. In particular, do not treat
-its partially filled `plane_to_kq` map as complete.
+The next stage now exists in
+[`Conway/hyperbolic237/FUNDAMENTAL-POLYGON.md`](https://github.com/isomorphismes/Conway/blob/experiment/klein-237-finite-quotient-20261009/hyperbolic237/FUNDAMENTAL-POLYGON.md).
+Its breadth-first fundamental polygon consists of all 336 distinct Schwarz
+triangles in one connected region in the Poincare disk. Exactly **460**
+adjacencies are internal, leaving **88** oriented boundary edges and **44**
+paired boundary-edge pairs. Each pairing has a deck transformation given as
+an explicit word in the three global hyperbolic reflections.
 
-Next geometric experiment: compute a connected 336-triangle fundamental
-region for the torsion-free kernel, extract paired oriented boundary edges,
-and verify those pairings against the exact 168-dart permutations before
-considering 3D deformation. This is a distinct requirement from coloring a
-patch by coset labels.
+Crucially, adjacency is checked using exact **faithful Tits matrices** over
+`Z[2 cos(pi/7)]`, not by guessing which floating-point triangles touch.
+A finite PGL(2,F7) image alone could not decide equality in the infinite group.
+The numerically rendered hyperbolic sides agree with the deck transformations
+and lengths independently.
+
+The region has `V=213, E=548, F=336`, with Euler characteristic 1 and one
+boundary cycle. Once paired it has `V=164, E=504, F=336`, characteristic -4,
+and genus 3. The 164 vertices are 84+56+24 classes of the three Schwarz
+corner types. This is an **actual nonconvex 88-sided polygon**, not yet a
+conventional 12-gon or 14-gon with fewer identified sides.
+
+The construction does **not** provide a pointwise correspondence with the
+existing 3D/papercraft embedding by Tim Hutton. In particular, the
+`plane_to_kq` lookup in `kq.py` is unfinished; do not use it as a verified
+vertex-matching table. Simplifying the polygon, matching heptagon labels,
+and then exploring the 3D embedding remain distinct questions.
 
 ## References and thanks
 
@@ -60,7 +72,7 @@ model](https://github.com/timhutton/klein-quartic), and **Greg Egan** for
 and its regular-map explanation. The mathematical line also runs through
 **Felix Klein**. Thanks to **Chaim Goodman-Strauss**, **Vladimir Bulatov**, and
 **Scott Vorthmann** for [SymmHub](https://github.com/SymmHub/SymmHub), and to
-**John Horton Conway**, **William Thurston**, and **Adam A. Deaton** for
+**Jacques Tits**, **James E. Humphreys**, and **John Horton Conway**, **William Thurston**, and **Adam A. Deaton** for
 the orbifold-geometrization tradition.
 
 No source code is copied from Hutton's GPL-licensed `kq.py` or SymmHub.
